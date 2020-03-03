@@ -1,0 +1,28 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      # https://github.com/xu-cheng/latex-action/issues/16
+      - name: Compilar documento y comprobar la salida
+        uses: ./
+        with:
+          # The root LaTeX file to be compiled
+          root_file: 00-anteproyecto.tex
+          # The working directory for the LaTeX engine
+          working_directory: ./build # optional
+          # The LaTeX engine to be invoked
+          #compiler: # optional, default is latexmk
+          # Extra arguments to be passed to the LaTeX engine
+          #args: # optional, default is -pdf -file-line-error -interaction=nonstopmode
+          # [Deprecated] Install extra packages by tlmgr
+          #extra_packages: # optional
+          # Install extra packages by apk
+          #extra_system_packages: # optional
+      - name: Check pdf files
+        run: file build/00-anteproyecto.pdf | grep -q ' PDF '
