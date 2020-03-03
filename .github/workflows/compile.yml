@@ -10,7 +10,7 @@ jobs:
     steps:
       # https://github.com/xu-cheng/latex-action/issues/16
       - name: Compilar documento y comprobar la salida
-        uses: ./
+        uses: actions/push@master
         with:
           # The root LaTeX file to be compiled
           root_file: 00-anteproyecto.tex
